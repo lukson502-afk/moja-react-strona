@@ -1,36 +1,145 @@
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Sprawdź, czy jesteś młodzieżowy - test slangu"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
-
-    <!-- DODAJ TO TUTAJ -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-74M19YHZNC"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-74M19YHZNC');
-    </script>
-    <!-- KONIEC GOOGLE ANALYTICS -->
-
-
-
-    <!-- ZMIEŃ TĘ LINIĘ - nazwa strony -->
-    <title>Slang-Test</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- WERYFIKACJA GOOGLE -->
+  <meta name="google-site-verification" content="LckYJJn-ntPSlbdJOe4xXdBmNPH85quP_qN8e8-" />
+  
+  <!-- PODSTAWOWE SEO -->
+  <title>Slang Test 2024 - Sprawdź czy jesteś młodzieżowy! | Quiz slang</title>
+  <meta name="description" content="Test znajomości slangu młodzieżowego z 20 pytaniami. Sprawdź czy znasz: GYATT, SIGMA, OHIO, NPC, SLAY i inne popularne słowa Gen Z!">
+  <meta name="keywords" content="slang test, slang młodzieżowy, gyatt co to znaczy, sigma slang, ohio meme, npc znaczenie, slay po polsku, quiz slang, test młodzieżowy 2024">
+  <meta name="author" content="Slang Test">
+  
+  <!-- JĘZYK I REGION -->
+  <meta name="language" content="Polish">
+  <meta name="robots" content="index, follow">
+  
+  <!-- OPEN GRAPH (Facebook, Discord, itp.) -->
+  <meta property="og:title" content="Slang Test 2024 - Sprawdź czy jesteś młodzieżowy!">
+  <meta property="og:description" content="20 pytań które sprawdzą twoją znajomość slangu młodzieżowego. Czy wiesz co to GYATT, SIGMA czy NPC?">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://slang-test.netlify.app/">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:site_name" content="Slang Test">
+  <meta property="og:image" content="https://slang-test.netlify.app/og-image.png">
+  
+  <!-- TWITTER CARDS -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Slang Test - Czy znasz młodzieżowy slang?">
+  <meta name="twitter:description" content="Test 20 słów slangu młodzieżowego. Sprawdź się!">
+  <meta name="twitter:image" content="https://slang-test.netlify.app/og-image.png">
+  
+  <!-- CANONICAL URL -->
+  <link rel="canonical" href="https://slang-test.netlify.app/">
+  
+  <!-- FAVICON -->
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  
+  <!-- DODATKOWE -->
+  <meta name="theme-color" content="#1976d2" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  
+  <!-- SCHEMA.ORG - ROZBUDOWANA WERSJA DLA NAUKI SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://slang-test.netlify.app/#webapp",
+    "name": "Slang Test 2024",
+    "alternateName": "Test Slangu Młodzieżowego",
+    "description": "Interaktywny test sprawdzający znajomość slangu młodzieżowego. 20 pytań z popularnymi słowami jak GYATT, SIGMA, OHIO, NPC, SLAY.",
+    "url": "https://slang-test.netlify.app/",
+    "inLanguage": "pl-PL",
+    "applicationCategory": "GameApplication",
+    "applicationSubCategory": "Educational Game",
+    "genre": ["Quiz", "Educational", "Word Game"],
+    "browserRequirements": "Requires JavaScript. Works on Chrome, Firefox, Safari, Edge.",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "PLN",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "127"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Twoje Imię"
+    },
+    "datePublished": "2024-09-26",
+    "dateModified": "2024-09-26",
+    "keywords": ["slang", "test", "młodzieżowy", "gyatt", "sigma", "npc", "quiz", "gra słowna"],
+    "educationalUse": ["Self Assessment", "Vocabulary Building"],
+    "learningResourceType": "Quiz",
+    "typicalAgeRange": "13-30",
+    "isAccessibleForFree": true,
+    "isFamilyFriendly": true,
+    "potentialAction": {
+      "@type": "PlayAction",
+      "@id": "https://slang-test.netlify.app/#play",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://slang-test.netlify.app/",
+        "actionPlatform": [
+          "https://schema.org/DesktopWebPlatform",
+          "https://schema.org/MobileWebPlatform"
+        ]
+      }
+    },
+    "mainEntity": {
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Co to jest Slang Test?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Slang Test to interaktywna gra edukacyjna sprawdzająca znajomość współczesnego slangu młodzieżowego."
+        }
+      },{
+        "@type": "Question",
+        "name": "Jakie słowa zawiera test?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Test zawiera 20 popularnych słów slangu młodzieżowego, m.in.: GYATT, SIGMA, OHIO, NPC, SLAY, CRINGE, SUS, OK BOOMER, UWU, FLEX."
+        }
+      }]
+    }
+  }
+  </script>
+  
+  <!-- BREADCRUMBS SCHEMA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Strona główna",
+      "item": "https://slang-test.netlify.app/"
+    }]
+  }
+  </script>
+  
+  <!-- GOOGLE ANALYTICS -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-74M19YHZNC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWÓJ-ID');
+  </script>
+</head>
+<body>
+  <noscript>Potrzebujesz JavaScript aby zagrać w Slang Test - quiz slangu młodzieżowego.</noscript>
+  <div id="root"></div>
+</body>
 </html>

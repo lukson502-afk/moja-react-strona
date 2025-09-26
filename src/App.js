@@ -106,7 +106,7 @@ function App() {
   return (
     <div className="app">
       {currentScreen === 'home' && <HomeScreen onStart={startGame} gameResult={gameResult} onPrivacy={showPrivacyPolicy} />}
-      {currentScreen === 'game' && <GameScreen onEnd={endGame} />}
+      {currentScreen === 'game' && <GameScreen onEnd={endGame} onBack={goHome} />}
       {currentScreen === 'privacy' && <PrivacyPolicy onBack={goHome} />}
     </div>
   );
@@ -118,7 +118,7 @@ function HomeScreen({ onStart, gameResult, onPrivacy }) {
     <div className="home-screen">
       <div className="home-content">
         <h1 className="game-title">GRA SŁOWNA</h1>
-        <h2 className="game-subtitle">SLANG EDITION</h2>
+        <h2 className="game-subtitle">SLANG EDITION 2024</h2>
         <p className="test-tagline">Sprawdź, czy jesteś młodzieżowy!</p>
         
         {gameResult && (
@@ -144,7 +144,7 @@ function HomeScreen({ onStart, gameResult, onPrivacy }) {
 }
 
 // Ekran gry
-function GameScreen({ onEnd }) {
+function GameScreen({ onEnd, onBack }) {
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [guessedWord, setGuessedWord] = useState([]);
@@ -329,6 +329,11 @@ function GameScreen({ onEnd }) {
   return (
     <div className="game-screen">
       <div className="game-header">
+        {/* PRZYCISK COFNIJ */}
+        <button className="browser-back-button" onClick={onBack}>
+          <span className="browser-back-icon">‹</span>
+        </button>
+        
         <h3>Pytanie {currentQuestionIndex + 1}/20</h3>
         <div className="tagline">Sprawdź, czy jesteś młodzieżowy!</div>
         <div className="header-right">
@@ -453,3 +458,4 @@ function GameScreen({ onEnd }) {
 }
 
 export default App;
+      
