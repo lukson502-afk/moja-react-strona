@@ -1,0 +1,597 @@
+/* App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e3f2fd;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Ekran główny */
+.home-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e3f2fd;
+}
+
+.home-content {
+  text-align: center;
+  background: white;
+  padding: 60px 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+}
+
+.game-title {
+  font-size: clamp(36px, 8vw, 72px);
+  color: #1565c0;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.game-subtitle {
+  font-size: clamp(20px, 4vw, 32px);
+  color: #7b1fa2;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.last-result {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.last-result p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.play-button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 20px 60px;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.play-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.button-icon {
+  font-size: clamp(24px, 3vw, 32px);
+}
+
+/* Ekran gry - pełny ekran */
+.game-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #e3f2fd;
+  overflow: hidden;
+}
+
+.game-header {
+  background: #1976d2;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.game-header h3 {
+  font-size: clamp(18px, 2.5vw, 24px);
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: bold;
+}
+
+.game-content {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.game-content > * {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: clamp(14px, 2vw, 18px);
+  border: 1px solid;
+}
+
+.stat-warning {
+  background: #fff3e0;
+  color: #ef6c00;
+  border-color: rgba(239, 108, 0, 0.3);
+}
+
+.stat-danger {
+  background: #ffebee;
+  color: #c62828;
+  border-color: rgba(198, 40, 40, 0.3);
+}
+
+.stat-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-color: rgba(46, 125, 50, 0.3);
+}
+
+.stat-icon {
+  font-size: clamp(18px, 2.5vw, 24px);
+}
+
+.hint-box {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.hint-label {
+  font-size: clamp(12px, 1.5vw, 16px);
+  font-weight: 600;
+  color: #666;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+}
+
+.hint-text {
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: #333;
+  line-height: 1.4;
+}
+
+.word-display {
+  background: #f3e5f5;
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(156, 39, 176, 0.2);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.word-label {
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 700;
+  color: #7b1fa2;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+
+.word-letters {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 16px);
+  flex-wrap: wrap;
+}
+
+.letter-box {
+  width: clamp(40px, 6vw, 60px);
+  height: clamp(50px, 7vw, 70px);
+  background: white;
+  border: 2.5px solid #666;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 900;
+  font-family: 'Courier New', monospace;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.letter-box.filled {
+  background: #e1bee7;
+  border-color: #9c27b0;
+  color: #6a1b9a;
+}
+
+.alphabet-grid {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(4px, 0.8vw, 10px);
+  margin-bottom: 20px;
+}
+
+.letter-button {
+  width: clamp(28px, 4vw, 45px);
+  height: clamp(28px, 4vw, 45px);
+  border: none;
+  border-radius: 6px;
+  font-size: clamp(12px, 2vw, 20px);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #2196f3;
+  color: white;
+  box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+}
+
+.letter-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(33, 150, 243, 0.4);
+}
+
+.letter-button.letter-partial {
+  background: #ff9800;
+  color: white;
+}
+
+.letter-button.letter-complete {
+  background: #81c784;
+  color: #1b5e20;
+}
+
+.letter-button.letter-wrong {
+  background: #ef9a9a;
+  color: #b71c1c;
+}
+
+/* Dialogi */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dialog {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  max-width: 90%;
+  width: 500px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dialog-header h3 {
+  font-size: clamp(24px, 3vw, 32px);
+}
+
+.dialog-icon {
+  font-size: clamp(28px, 3.5vw, 36px);
+}
+
+.dialog-header.success {
+  color: #4caf50;
+}
+
+.dialog-header.danger {
+  color: #f44336;
+}
+
+.dialog p {
+  font-size: clamp(16px, 2vw, 20px);
+  margin-bottom: 25px;
+  color: #666;
+}
+
+.dialog-button {
+  padding: 12px 40px;
+  border: none;
+  border-radius: 25px;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.dialog-button.success {
+  background: #4caf50;
+}
+
+.dialog-button.primary {
+  background: #2196f3;
+}
+
+.dialog-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Dodatkowe style dla bardzo dużych ekranów */
+@media (min-width: 1920px) {
+  .game-content > * {
+    max-width: 1400px;
+  }
+  
+  .letter-box {
+    width: 70px;
+    height: 80px;
+    font-size: 40px;
+  }
+  
+  .letter-button {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+  }
+}
+
+/* Dla małych ekranów */
+@media (max-height: 700px) {
+  .game-content {
+    padding: 15px;
+  }
+  
+  .hint-box, .word-display, .alphabet-grid {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Efektowny styl dla tagline na stronie głównej */
+.test-tagline {
+  background: linear-gradient(90deg, #ff6b6b, #ffa06b, #ffd06b, #8aff6b, #6bcfff, #d46bff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: clamp(16px, 2.5vw, 22px);
+  margin: -5px 0 40px 0;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding: 5px 15px;
+  animation: shimmer 3s infinite linear;
+}
+
+.test-tagline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d46bff, transparent);
+}
+
+/* Efektowny styl dla tagline w nagłówku gry */
+.tagline {
+  color: #ffffff;
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 600;
+  text-align: center;
+  flex: 1;
+  margin: 0 15px;
+  position: relative;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  letter-spacing: 1px;
+  transform: perspective(500px) rotateX(10deg);
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  animation: pulse 2s infinite;
+}
+
+/* Animacje */
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes pulse {
+  0% { transform: perspective(500px) rotateX(10deg) scale(1); }
+  50% { transform: perspective(500px) rotateX(10deg) scale(1.03); }
+  100% { transform: perspective(500px) rotateX(10deg) scale(1); }
+}
+
+/* Upewnij się, że elementy są dobrze ułożone */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-header h3 {
+  flex-shrink: 0;
+}
+
+.timer {
+  flex-shrink: 0;
+}
+
+/* Dodaj wielkość tła do animacji gradientu */
+.test-tagline {
+  background-size: 200% 200%;
+}
+
+/* Przycisk podpowiedzi */
+.hint-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #673ab7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 auto 20px; /* Zapewni odstęp nad alfabetem */
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(103, 58, 183, 0.3);
+}
+
+.hint-button:hover {
+  background: #5e35b1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(103, 58, 183, 0.4);
+}
+
+.hint-icon {
+  font-size: clamp(16px, 2vw, 20px);
+}
+
+/* Aktualizacja stylów przycisków liter */
+.letter-button.letter-complete {
+  background: #81c784;
+  color: #1b5e20;
+}
+
+.letter-button.letter-wrong {
+  background: #ef9a9a;
+  color: #b71c1c;
+}
+
+/* Dodaj te style do istniejącego App.css */
+
+/* Przycisk zakończenia gry */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.exit-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.exit-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.exit-icon {
+  font-size: 18px;
+}
+
+/* Dialog ostrzeżenia */
+.dialog-header.warning {
+  color: #ff9800;
+}
+
+.dialog-subtext {
+  font-size: clamp(14px, 1.8vw, 16px);
+  color: #888;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.dialog-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.dialog-button.cancel {
+  background: #9e9e9e;
+}
+
+.dialog-button.danger {
+  background: #f44336;
+}
+
+.dialog-button.cancel:hover {
+  background: #757575;
+}
+
+.dialog-button.danger:hover {
+  background: #d32f2f;
+}
