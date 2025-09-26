@@ -595,3 +595,10 @@ body {
 .dialog-button.danger:hover {
   background: #d32f2f;
 }
+
+/* Styl dla spacji w haśle */
+.letter-box.space {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}

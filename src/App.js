@@ -33,6 +33,58 @@ function App() {
   const [currentScreen, setCurrentScreen] = useState('home');
   const [gameResult, setGameResult] = useState(null);
 
+  // Zabezpieczenia
+  useEffect(() => {
+    // Blokada prawego przycisku myszy
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
+    
+    // Blokada zaznaczania tekstu
+    const handleSelectStart = (e) => {
+      e.preventDefault();
+    };
+    
+    // Blokada przeciągania
+    const handleDragStart = (e) => {
+      e.preventDefault();
+    };
+
+    // Dodaj event listeners
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('selectstart', handleSelectStart);
+    document.addEventListener('dragstart', handleDragStart);
+    
+    // Blokada kombinacji klawiszy (F12, Ctrl+Shift+I, etc.)
+    const handleKeyDown = (e) => {
+      // F12
+      if (e.keyCode === 123) {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+      if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+U (view source)
+      if (e.ctrlKey && e.keyCode === 85) {
+        e.preventDefault();
+        return false;
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup - usuń event listeners przy odmontowaniu
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('selectstart', handleSelectStart);
+      document.removeEventListener('dragstart', handleDragStart);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const startGame = () => {
     setCurrentScreen('game');
   };
@@ -107,7 +159,9 @@ function GameScreen({ onEnd }) {
   useEffect(() => {
     if (shuffledQuestions.length > 0) {
       const question = shuffledQuestions[currentQuestionIndex];
-      setGuessedWord(new Array(question.haslo.length).fill(''));
+      // Tworzymy tablicę z uwzględnieniem spacji
+      const initialGuess = question.haslo.split('').map(char => char === ' ' ? ' ' : '');
+      setGuessedWord(initialGuess);
       setLetterUsageCount({});
       setMistakes(0);
       setHintsUsed(0);
@@ -147,8 +201,14 @@ function GameScreen({ onEnd }) {
     const word = currentQuestion.haslo;
     const newGuessedWord = [...guessedWord];
     
-    // Znajdź pozycję pierwszego pustego miejsca
-    const emptyIndex = newGuessedWord.findIndex(l => l === '');
+    // Znajdź pozycję pierwszego pustego miejsca (pomijając spacje)
+    let emptyIndex = -1;
+    for (let i = 0; i < newGuessedWord.length; i++) {
+      if (newGuessedWord[i] === '' && word[i] !== ' ') {
+        emptyIndex = i;
+        break;
+      }
+    }
     
     // Jeśli wszystkie miejsca są wypełnione, nie rób nic
     if (emptyIndex === -1) return;
@@ -162,8 +222,12 @@ function GameScreen({ onEnd }) {
         [letter]: (prev[letter] || 0) + 1
       }));
       
-      // Sprawdzamy czy całe słowo zostało odgadnięte
-      if (emptyIndex === word.length - 1 || !newGuessedWord.includes('')) {
+      // Sprawdzamy czy całe słowo zostało odgadnięte (pomijając spacje)
+      const isComplete = newGuessedWord.every((char, index) => 
+        char !== '' || word[index] === ' '
+      );
+      
+      if (isComplete) {
         setGuessedWord(newGuessedWord);
         setScore(score + 1);
         setShowDialog('correct');
@@ -204,10 +268,10 @@ function GameScreen({ onEnd }) {
     const word = currentQuestion.haslo;
     const newGuessedWord = [...guessedWord];
     
-    // Znajdź wszystkie pozycje, które są jeszcze puste
+    // Znajdź wszystkie pozycje, które są jeszcze puste (pomijając spacje)
     const emptyPositions = [];
     for (let i = 0; i < newGuessedWord.length; i++) {
-      if (newGuessedWord[i] === '') {
+      if (newGuessedWord[i] === '' && word[i] !== ' ') {
         emptyPositions.push(i);
       }
     }
@@ -229,7 +293,11 @@ function GameScreen({ onEnd }) {
     setGuessedWord(newGuessedWord);
     
     // Sprawdź czy całe słowo zostało odgadnięte
-    if (!newGuessedWord.includes('')) {
+    const isComplete = newGuessedWord.every((char, index) => 
+      char !== '' || word[index] === ' '
+    );
+    
+    if (isComplete) {
       setScore(score + 1);
       setShowDialog('correct');
     }
@@ -279,8 +347,11 @@ function GameScreen({ onEnd }) {
           <p className="word-label">HASŁO:</p>
           <div className="word-letters">
             {guessedWord.map((letter, index) => (
-              <div key={index} className={`letter-box ${letter ? 'filled' : ''}`}>
-                {letter}
+              <div 
+                key={index} 
+                className={`letter-box ${letter && letter !== ' ' ? 'filled' : ''} ${letter === ' ' ? 'space' : ''}`}
+              >
+                {letter === ' ' ? '' : letter}
               </div>
             ))}
           </div>
@@ -291,7 +362,6 @@ function GameScreen({ onEnd }) {
           <span className="hint-icon">💡</span>
           Podpowiedź
         </button>
-
         <div className="alphabet-grid">
           {alphabet.map(letter => (
             <button
