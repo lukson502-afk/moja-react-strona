@@ -1,6 +1,7 @@
 // App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import PrivacyPolicy from './PrivacyPolicy';
 
 // Dane gry
 const gameData = [
@@ -94,16 +95,25 @@ function App() {
     setCurrentScreen('home');
   };
 
+  const showPrivacyPolicy = () => {
+    setCurrentScreen('privacy');
+  };
+
+  const goHome = () => {
+    setCurrentScreen('home');
+  };
+
   return (
     <div className="app">
-      {currentScreen === 'home' && <HomeScreen onStart={startGame} gameResult={gameResult} />}
+      {currentScreen === 'home' && <HomeScreen onStart={startGame} gameResult={gameResult} onPrivacy={showPrivacyPolicy} />}
       {currentScreen === 'game' && <GameScreen onEnd={endGame} />}
+      {currentScreen === 'privacy' && <PrivacyPolicy onBack={goHome} />}
     </div>
   );
 }
 
 // Ekran główny
-function HomeScreen({ onStart, gameResult }) {
+function HomeScreen({ onStart, gameResult, onPrivacy }) {
   return (
     <div className="home-screen">
       <div className="home-content">
@@ -123,6 +133,12 @@ function HomeScreen({ onStart, gameResult }) {
           GRAJ
         </button>
       </div>
+      
+      <footer className="footer">
+        <button className="privacy-link" onClick={onPrivacy}>
+          Polityka prywatności
+        </button>
+      </footer>
     </div>
   );
 }
@@ -357,11 +373,12 @@ function GameScreen({ onEnd }) {
           </div>
         </div>
 
-        {/* Przycisk podpowiedzi - przeniesiony nad alfabetem */}
+        {/* Przycisk podpowiedzi */}
         <button className="hint-button" onClick={getHint}>
           <span className="hint-icon">💡</span>
           Podpowiedź
         </button>
+
         <div className="alphabet-grid">
           {alphabet.map(letter => (
             <button
